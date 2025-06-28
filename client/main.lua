@@ -755,6 +755,7 @@ function CleanupVehicleProtection(vehicleId)
         for _, vehicle in pairs(vehicles) do
             if vehicle == vehicleId and DoesEntityExist(vehicle) then
                 SetEntityAsMissionEntity(vehicle, false, true)
+                SetEntityAsNoLongerNeeded(vehicle)
                 break
             end
         end
@@ -799,6 +800,9 @@ function VehicleCleanupSystem()
             end
             
             for _, vehicleId in pairs(vehiclesToCleanup) do
+                if DoesEntityExist(vehicleId) then
+                    SetEntityAsNoLongerNeeded(vehicleId)
+                end
                 CleanupVehicleProtection(vehicleId)
             end
         end
@@ -812,11 +816,15 @@ AddEventHandler('onResourceStop', function(resourceName)
         end
         
         for vehicleId, _ in pairs(protectedVehicles) do
+            if DoesEntityExist(vehicleId) then
+                SetEntityAsNoLongerNeeded(vehicleId)
+            end
             CleanupVehicleProtection(vehicleId)
         end
         
         local vehicles = GetGamePool('CVehicle')
         for _, vehicle in pairs(vehicles) do
+            SetEntityAsNoLongerNeeded(vehicle)
             RemoveVehicleTarget(vehicle, vehicle)
         end
     end
