@@ -46,6 +46,9 @@ A FiveM script that allows players to break into vehicles and steal random items
 
 For issues or suggestions, please create an issue on the repository, or join our Discord server. [DISCORD](https://discord.gg/yhgdBx7KKF)
 
+## Donations are greatly appreciated
+[Ko-Fi Link](ko-fi.com/majidev)
+
 ## License
 
 This project is open source and available under the MIT License.
